@@ -6,7 +6,7 @@
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/GravityMedia/Magician.svg)](https://scrutinizer-ci.com/g/GravityMedia/Magician/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/GravityMedia/Magician.svg)](https://scrutinizer-ci.com/g/GravityMedia/Magician)
 [![Total Downloads](https://img.shields.io/packagist/dt/gravitymedia/magician.svg)](https://packagist.org/packages/gravitymedia/magician)
-[![Dependency Status](https://img.shields.io/versioneye/d/php/gravitymedia:magician.svg)](https://www.versioneye.com/user/projects/54a6c25c27b014d85a000150)
+[![Dependency Status](https://img.shields.io/versioneye/d/php/gravitymedia:magician.svg)](https://www.versioneye.com/user/projects/570b4dd7fcd19a00518552e5)
 
 Magician is an image processing library for PHP.
 
