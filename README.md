@@ -6,7 +6,7 @@
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/GravityMedia/Magickly.svg)](https://scrutinizer-ci.com/g/GravityMedia/Magickly/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/GravityMedia/Magickly.svg)](https://scrutinizer-ci.com/g/GravityMedia/Magickly)
 [![Total Downloads](https://img.shields.io/packagist/dt/gravitymedia/magickly.svg)](https://packagist.org/packages/gravitymedia/magickly)
-[![Dependency Status](https://img.shields.io/versioneye/d/php/gravitymedia:magickly.svg)](https://www.versioneye.com/user/projects/570b4dd7fcd19a00518552e5)
+[![Dependency Status](https://img.shields.io/versioneye/d/php/gravitymedia:magickly.svg)](https://www.versioneye.com/user/projects/570bea0dfcd19a0039f16acd)
 
 Magickly is an image processing library for PHP.
 
