@@ -10,10 +10,22 @@ before_install:
     - "composer self-update"
 
 install:
-    - "sudo apt-get install -y imagemagick libmagickcore-dev libmagickwand-dev"
-    - "sudo apt-get install -y graphicsmagick libgraphicsmagick1-dev"
-    - "printf \"\\n\" | pecl install imagick-3.4.1"
-    - "printf \"\\n\" | pecl install gmagick-1.1.7RC3"
+    - "sudo apt-get remove -y imagemagick libmagickcore-dev libmagickwand-dev"
+    - "sudo apt-get build-dep -y imagemagick graphicsmagick"
+    - "wget http://www.imagemagick.org/download/ImageMagick-6.9.3-8.tar.gz"
+    - "tar -xzf ImageMagick-6.9.3-8.tar.xz"
+    - "cd ImageMagick-6.9.3-8"
+    - "./configure --prefix=/opt/imagemagick"
+    - "make -j"
+    - "sudo make install"
+    - "printf \"/opt/imagemagick\\n\" | pecl install imagick-3.4.1"
+    - "wget http://78.108.103.11/MIRROR/ftp/GraphicsMagick/1.3/GraphicsMagick-1.3.23.tar.gz"
+    - "tar -xzf GraphicsMagick-1.3.23.tar.xz"
+    - "cd GraphicsMagick-1.3.23"
+    - "./configure --prefix=/opt/graphicsmagick"
+    - "make -j"
+    - "sudo make install"
+    - "printf \"/opt/graphicsmagick\\n\" | pecl install gmagick-1.1.7RC3"
     - "composer install"
 
 script:
