@@ -1,6 +1,6 @@
 {
-    "name": "gravitymedia/magician",
-    "description": "Magician is an image processing library for PHP.",
+    "name": "gravitymedia/magickly",
+    "description": "Magickly is an image processing library for PHP.",
     "license": "MIT",
     "authors": [
         {
@@ -21,12 +21,12 @@
     },
     "autoload": {
         "psr-4": {
-            "GravityMedia\\Magician\\": "src/"
+            "GravityMedia\\Magickly\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "GravityMedia\\MagicianTest\\": "tests/src/"
+            "GravityMedia\\MagicklyTest\\": "tests/src/"
         }
     },
     "suggest": {

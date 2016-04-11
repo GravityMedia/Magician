@@ -2,8 +2,8 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="GravityMedia\Magician" />
-      <sourceFolder url="file://$MODULE_DIR$/tests/src" isTestSource="true" packagePrefix="GravityMedia\MagicianTest" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="GravityMedia\Magickly" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/src" isTestSource="true" packagePrefix="GravityMedia\MagicklyTest" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

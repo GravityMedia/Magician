@@ -1,18 +1,18 @@
 <?php
 /**
- * This file is part of the Magician project.
+ * This file is part of the Magickly project.
  *
  * @author Daniel Schröder <daniel.schroeder@gravitymedia.de>
  */
 
-namespace GravityMedia\Magician\Gmagick;
+namespace GravityMedia\Magickly\Gmagick;
 
-use GravityMedia\Magician\ImageInterface;
+use GravityMedia\Magickly\ImageInterface;
 
 /**
  * The Image class.
  *
- * @package GravityMedia\Magician\Gmagick
+ * @package GravityMedia\Magickly\Gmagick
  */
 class Image implements ImageInterface
 {

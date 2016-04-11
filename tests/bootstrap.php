@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the Magician project.
+ * This file is part of the Magickly project.
  *
  * @author Daniel Schröder <daniel.schroeder@gravitymedia.de>
  */

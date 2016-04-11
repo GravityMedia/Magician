@@ -1,14 +1,14 @@
-# Magician
+# Magickly
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/gravitymedia/magician.svg)](https://packagist.org/packages/gravitymedia/magician)
-[![Software License](https://img.shields.io/packagist/l/gravitymedia/magician.svg)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/GravityMedia/Magician.svg)](https://travis-ci.org/GravityMedia/Magician)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/GravityMedia/Magician.svg)](https://scrutinizer-ci.com/g/GravityMedia/Magician/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/GravityMedia/Magician.svg)](https://scrutinizer-ci.com/g/GravityMedia/Magician)
-[![Total Downloads](https://img.shields.io/packagist/dt/gravitymedia/magician.svg)](https://packagist.org/packages/gravitymedia/magician)
-[![Dependency Status](https://img.shields.io/versioneye/d/php/gravitymedia:magician.svg)](https://www.versioneye.com/user/projects/570b4dd7fcd19a00518552e5)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/gravitymedia/magickly.svg)](https://packagist.org/packages/gravitymedia/magickly)
+[![Software License](https://img.shields.io/packagist/l/gravitymedia/magickly.svg)](LICENSE.md)
+[![Build Status](https://img.shields.io/travis/GravityMedia/Magickly.svg)](https://travis-ci.org/GravityMedia/Magickly)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/GravityMedia/Magickly.svg)](https://scrutinizer-ci.com/g/GravityMedia/Magickly/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/GravityMedia/Magickly.svg)](https://scrutinizer-ci.com/g/GravityMedia/Magickly)
+[![Total Downloads](https://img.shields.io/packagist/dt/gravitymedia/magickly.svg)](https://packagist.org/packages/gravitymedia/magickly)
+[![Dependency Status](https://img.shields.io/versioneye/d/php/gravitymedia:magickly.svg)](https://www.versioneye.com/user/projects/570b4dd7fcd19a00518552e5)
 
-Magician is an image processing library for PHP.
+Magickly is an image processing library for PHP.
 
 ## Requirements
 
@@ -27,7 +27,7 @@ $ curl -s https://getcomposer.org/installer | php
 Add the package to your `composer.json` and install it via Composer:
 
 ```bash
-$ php composer.phar require gravitymedia/magician
+$ php composer.phar require gravitymedia/magickly
 ```
 
 ## Usage
@@ -39,13 +39,13 @@ This is a simple example using the Imagick implementation.
 require_once __DIR__ . '/vendor/autoload.php';
 
 // Import classes
-use GravityMedia\Magician\Imagick\Magician;
+use GravityMedia\Magickly\Imagick\Magickly;
 
-// Create Magician object
-$magician = new Magician();
+// Create Magickly object
+$magickly = new Magickly();
 
 // Print version string
-print $magician->getVersion();
+print $magickly->getVersion();
 ```
 
 This is a simple example using the Gmagick implementation. 
@@ -55,13 +55,13 @@ This is a simple example using the Gmagick implementation.
 require_once __DIR__ . '/vendor/autoload.php';
 
 // Import classes
-use GravityMedia\Magician\Gmagick\Magician;
+use GravityMedia\Magickly\Gmagick\Magickly;
 
-// Create Magician object
-$magician = new Magician();
+// Create Magickly object
+$magickly = new Magickly();
 
 // Print version string
-print $magician->getVersion();
+print $magickly->getVersion();
 ```
 
 ## Testing

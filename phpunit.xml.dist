@@ -40,7 +40,7 @@
         <server name="HTTP_HOST" value="phpunit.local"/>
     </php>
     <testsuites>
-        <testsuite name="Magician Test Suite">
+        <testsuite name="Magickly Test Suite">
             <directory>tests/src</directory>
         </testsuite>
     </testsuites>

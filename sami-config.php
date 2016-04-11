@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the Magician project.
+ * This file is part of the Magickly project.
  *
  * @author Daniel Schröder <daniel.schroeder@gravitymedia.de>
  */
@@ -22,7 +22,7 @@ use Symfony\Component\Finder\Finder;
 return new Sami(
     Finder::create()->files()->name('*.php')->in(__DIR__ . '/src'),
     [
-        'title' => 'Magician API',
+        'title' => 'Magickly API',
         'build_dir' => __DIR__ . '/build/docs',
         'cache_dir' => __DIR__ . '/cache/sami',
         'default_opened_level' => 2,

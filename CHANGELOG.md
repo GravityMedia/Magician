@@ -1,6 +1,6 @@
 # Changelog
 
-All Notable changes to `gravitymedia/magician` will be documented in this file.
+All Notable changes to `gravitymedia/magickly` will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## NEXT - YYYY-MM-DD

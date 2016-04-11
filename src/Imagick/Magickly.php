@@ -1,21 +1,21 @@
 <?php
 /**
- * This file is part of the Magician project.
+ * This file is part of the Magickly project.
  *
  * @author Daniel Schröder <daniel.schroeder@gravitymedia.de>
  */
 
-namespace GravityMedia\Magician\Imagick;
+namespace GravityMedia\Magickly\Imagick;
 
-use GravityMedia\Magician\Exception\RuntimeException;
-use GravityMedia\Magician\MagicianInterface;
+use GravityMedia\Magickly\Exception\RuntimeException;
+use GravityMedia\Magickly\MagicklyInterface;
 
 /**
- * The Magician class.
+ * The Magickly class.
  *
- * @package GravityMedia\Magician\Imagick
+ * @package GravityMedia\Magickly\Imagick
  */
-class Magician implements MagicianInterface
+class Magickly implements MagicklyInterface
 {
     /**
      * @var string
@@ -23,7 +23,7 @@ class Magician implements MagicianInterface
     private static $version;
 
     /**
-     * Create Magician object.
+     * Create Magickly object.
      *
      * @throws RuntimeException
      */

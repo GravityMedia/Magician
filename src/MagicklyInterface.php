@@ -1,20 +1,20 @@
 <?php
 /**
- * This file is part of the Magician project.
+ * This file is part of the Magickly project.
  *
  * @author Daniel Schröder <daniel.schroeder@gravitymedia.de>
  */
 
-namespace GravityMedia\Magician;
+namespace GravityMedia\Magickly;
 
-use GravityMedia\Magician\Exception\RuntimeException;
+use GravityMedia\Magickly\Exception\RuntimeException;
 
 /**
- * The Magician interface.
+ * The Magickly interface.
  *
- * @package GravityMedia\Magician
+ * @package GravityMedia\Magickly
  */
-interface MagicianInterface
+interface MagicklyInterface
 {
     /**
      * Opens an existing image from $path.
