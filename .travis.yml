@@ -18,6 +18,7 @@ install:
     - "./configure --prefix=/opt/imagemagick"
     - "make -j"
     - "sudo make install"
+    - "cd .."
     - "printf \"/opt/imagemagick\\n\" | pecl install imagick-3.4.1"
     - "wget http://78.108.103.11/MIRROR/ftp/GraphicsMagick/1.3/GraphicsMagick-1.3.23.tar.gz"
     - "tar -xzf GraphicsMagick-1.3.23.tar.gz"
@@ -25,6 +26,7 @@ install:
     - "./configure --prefix=/opt/graphicsmagick"
     - "make -j"
     - "sudo make install"
+    - "cd .."
     - "printf \"/opt/graphicsmagick\\n\" | pecl install gmagick-1.1.7RC3"
     - "composer install"
 
