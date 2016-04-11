@@ -5,9 +5,11 @@ php:
     - "7.0"
 
 before_install:
+    - "pecl update-channels"
     - "composer self-update"
 
 install:
+    - "pecl install imagick gmagick"
     - "composer install"
 
 script:
