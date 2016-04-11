@@ -5,11 +5,14 @@ php:
     - "7.0"
 
 before_install:
+    - "sudo apt-get update -qq"
     - "pecl update-channels"
     - "composer self-update"
 
 install:
-    - "pecl install imagick gmagick"
+    - "sudo apt-get install -y imagemagick graphicsmagick"
+    - "printf \"\n\" | pecl install imagick"
+    - "pecl install gmagick-2.0.2RC2"
     - "composer install"
 
 script:
