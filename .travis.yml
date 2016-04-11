@@ -11,8 +11,8 @@ before_install:
 
 install:
     - "sudo apt-get install -y imagemagick graphicsmagick"
-    - "printf \"\n\" | pecl install imagick"
-    - "pecl install gmagick-2.0.2RC2"
+    - "printf \"\\n\" | pecl install imagick"
+    - "pecl install gmagick-1.1.7RC3"
     - "composer install"
 
 script:
