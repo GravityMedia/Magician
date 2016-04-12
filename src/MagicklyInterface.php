@@ -8,6 +8,7 @@
 namespace GravityMedia\Magickly;
 
 use GravityMedia\Magickly\Exception\RuntimeException;
+use GravityMedia\Magickly\Image\ImageInterface;
 
 /**
  * The Magickly interface.

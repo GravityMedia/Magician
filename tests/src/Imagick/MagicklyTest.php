@@ -7,7 +7,7 @@
 
 namespace GravityMedia\MagicklyTest\Imagick;
 
-use GravityMedia\Magickly\ImageInterface;
+use GravityMedia\Magickly\Image\ImageInterface;
 use GravityMedia\Magickly\Imagick\Magickly;
 
 /**

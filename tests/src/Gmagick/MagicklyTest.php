@@ -7,8 +7,8 @@
 
 namespace GravityMedia\MagicklyTest\Gmagick;
 
-use GravityMedia\Magickly\ImageInterface;
 use GravityMedia\Magickly\Gmagick\Magickly;
+use GravityMedia\Magickly\Image\ImageInterface;
 
 /**
  * The Magickly test class.

@@ -61,7 +61,11 @@ class Magickly implements MagicklyInterface
      */
     public function open($path)
     {
-        $imagick = new \Imagick($path);
+        try {
+            $imagick = new \Imagick($path);
+        } catch (\ImagickException $exception) {
+            throw new RuntimeException(sprintf('Unable to open image %s', $path), 0, $exception);
+        }
 
         return new Image($imagick);
     }
