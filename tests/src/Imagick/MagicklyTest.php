@@ -31,7 +31,7 @@ class MagicklyTest extends \PHPUnit_Framework_TestCase
     public function testOpenImage()
     {
         $magickly = new Magickly();
-        $image = $magickly->open(__DIR__ . '/../../resources/php-logo_no-profile.jpg');
+        $image = $magickly->open(__DIR__ . '/../../resources/PHP-logo_RGB_no_profile.jpg');
 
         $this->assertInstanceOf(ImageInterface::class, $image);
     }
