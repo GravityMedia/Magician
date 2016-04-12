@@ -22,7 +22,7 @@ install:
     - "cd $TRAVIS_BUILD_DIR"
     - "wget http://78.108.103.11/MIRROR/ftp/GraphicsMagick/1.3/GraphicsMagick-$GRAPHICSMAGICK_VERSION.tar.gz && tar -xzf GraphicsMagick-$GRAPHICSMAGICK_VERSION.tar.gz && cd GraphicsMagick-$GRAPHICSMAGICK_VERSION"
     - "./configure --prefix=/opt/graphicsmagick --enable-shared && make -j && sudo make install"
-    - "printf \"/opt/graphicsmagick\\n\" | if [ '$TRAVIS_PHP_VERSION' = '7.0' ]; then pecl install gmagick-2.0.2RC2; else pecl install gmagick-1.1.7RC3; fi"
+    - "printf \"/opt/graphicsmagick\\n\" | if [[ $TRAVIS_PHP_VERSION == '7.0' ]]; then pecl install gmagick-2.0.2RC2; else pecl install gmagick-1.1.7RC3; fi"
     - "cd $TRAVIS_BUILD_DIR"
     - "composer install"
 
