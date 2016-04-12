@@ -13,8 +13,7 @@ before_install:
     - "composer self-update"
 
 install:
-    - "sudo apt-get remove -y imagemagick libmagickcore-dev libmagickwand-dev"
-    - "sudo apt-get build-dep -y imagemagick graphicsmagick"
+    - "sudo apt-get purge -y imagemagick libmagickcore-dev libmagickwand-dev && sudo apt-get build-dep -y imagemagick graphicsmagick"
     - "cd $TRAVIS_BUILD_DIR"
     - "wget http://www.imagemagick.org/download/ImageMagick-$IMAGEMAGICK_VERSION.tar.gz && tar -xzf ImageMagick-$IMAGEMAGICK_VERSION.tar.gz && cd ImageMagick-$IMAGEMAGICK_VERSION"
     - "./configure --prefix=/opt/imagemagick --enable-shared && make -j && sudo make install"
