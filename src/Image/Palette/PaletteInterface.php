@@ -31,11 +31,11 @@ interface PaletteInterface
     public function getColorProfile();
 
     /**
-     * Set color profile.
+     * Return palette with color profile.
      *
      * @param ColorProfile $colorProfile
      *
-     * @return $this
+     * @return PaletteInterface
      */
-    public function setColorProfile(ColorProfile $colorProfile);
+    public function withColorProfile(ColorProfile $colorProfile);
 }

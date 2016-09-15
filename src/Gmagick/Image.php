@@ -11,6 +11,7 @@ use GravityMedia\Magickly\Enum\ColorSpace;
 use GravityMedia\Magickly\Exception\RuntimeException;
 use GravityMedia\Magickly\Image\AbstractImage;
 use GravityMedia\Magickly\Image\ColorProfile;
+use GuzzleHttp\Stream\Utils as StreamUtils;
 
 /**
  * The image class.
@@ -22,12 +23,12 @@ class Image extends AbstractImage
     /**
      * @var \Gmagick
      */
-    protected $gmagick;
+    private $gmagick;
 
     /**
      * @var array
      */
-    protected static $colorspaceMapping = [
+    protected static $colorSpaceMapping = [
         ColorSpace::COLOR_SPACE_RGB => \Gmagick::COLORSPACE_RGB,
         ColorSpace::COLOR_SPACE_CMYK => \Gmagick::COLORSPACE_CMYK,
         ColorSpace::COLOR_SPACE_GRAYSCALE => \Gmagick::COLORSPACE_GRAY
@@ -44,10 +45,20 @@ class Image extends AbstractImage
     }
 
     /**
+     * Clone image object.
+     */
+    public function __clone()
+    {
+        $this->gmagick = clone $this->gmagick;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getColorSpace()
     {
+        $this->gmagick->getimagetype(); \Gmagick::IMGTYPE_GRAYSCALE;
+
         switch ($this->gmagick->getimagecolorspace()) {
             case \Gmagick::COLORSPACE_RGB:
             case \Gmagick::COLORSPACE_SRGB:
@@ -57,22 +68,23 @@ class Image extends AbstractImage
             case \Gmagick::COLORSPACE_GRAY:
                 return ColorSpace::COLOR_SPACE_GRAYSCALE;
             default:
-                throw new RuntimeException('Only RGB, grayscale and CMYK colorspace are currently supported');
+                throw new RuntimeException('Only RGB, grayscale and CMYK color space are currently supported');
         }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setColorSpace($colorspace)
+    public function withColorSpace($colorSpace)
     {
-        if (!isset(static::$colorspaceMapping[$colorspace])) {
-            throw new RuntimeException('Only RGB, grayscale and CMYK colorspace are currently supported');
+        if (!isset(static::$colorSpaceMapping[$colorSpace])) {
+            throw new RuntimeException('Only RGB, grayscale and CMYK color space are currently supported');
         }
 
-        $this->gmagick->setimagecolorspace(static::$colorspaceMapping[$colorspace]);
+        $image = clone $this;
+        $image->gmagick->setimagecolorspace(static::$colorSpaceMapping[$colorSpace]);
 
-        return $this;
+        return $image;
     }
 
     /**
@@ -86,16 +98,17 @@ class Image extends AbstractImage
             return null;
         }
 
-        return new ColorProfile($data);
+        return new ColorProfile(StreamUtils::create($data));
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setColorProfile(ColorProfile $colorProfile)
+    public function withColorProfile(ColorProfile $colorProfile)
     {
-        $this->gmagick->setimageprofile('ICM', $colorProfile->getData());
+        $image = clone $this;
+        $image->gmagick->setimageprofile('ICM', $colorProfile->getData());
 
-        return $this;
+        return $image;
     }
 }

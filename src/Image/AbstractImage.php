@@ -45,19 +45,22 @@ abstract class AbstractImage implements ImageInterface
     /**
      * {@inheritdoc}
      */
-    public function setPalette(PaletteInterface $palette)
+    public function withPalette(PaletteInterface $palette)
     {
-        if ($this->getColorSpace() === $palette->getColorSpace()) {
-            return $this;
+        $image = clone $this;
+
+        if ($image->getColorSpace() === $palette->getColorSpace()) {
+            return $image;
         }
 
-        if (null === $this->getColorProfile()) {
-            $this->setColorProfile($this->getPalette()->getColorProfile());
+        if (null === $image->getColorProfile()) {
+            $image = $image->withColorProfile($image->getPalette()->getColorProfile());
         }
 
-        $this->setColorProfile($palette->getColorProfile());
-        $this->setColorSpace($palette->getColorSpace());
+        $image = $image
+            ->withColorProfile($palette->getColorProfile())
+            ->withColorSpace($palette->getColorSpace());
 
-        return $this;
+        return $image;
     }
 }

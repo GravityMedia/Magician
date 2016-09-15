@@ -27,15 +27,15 @@ interface ImageInterface
     public function getColorSpace();
 
     /**
-     * Set color space.
+     * Return image with color space.
      *
-     * @param int $colorspace
+     * @param int $colorSpace
      *
      * @throws RuntimeException
      *
-     * @return $this
+     * @return ImageInterface
      */
-    public function setColorSpace($colorspace);
+    public function withColorSpace($colorSpace);
 
     /**
      * Get color profile.
@@ -45,13 +45,13 @@ interface ImageInterface
     public function getColorProfile();
 
     /**
-     * Set color profile.
+     * Return image with color profile.
      *
      * @param ColorProfile $colorProfile
      *
-     * @return $this
+     * @return ImageInterface
      */
-    public function setColorProfile(ColorProfile $colorProfile);
+    public function withColorProfile(ColorProfile $colorProfile);
 
     /**
      * Get palette.
@@ -61,11 +61,11 @@ interface ImageInterface
     public function getPalette();
 
     /**
-     * Set palette.
+     * Return image with palette.
      *
      * @param PaletteInterface $palette
      *
-     * @return $this
+     * @return ImageInterface
      */
-    public function setPalette(PaletteInterface $palette);
+    public function withPalette(PaletteInterface $palette);
 }

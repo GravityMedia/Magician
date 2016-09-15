@@ -15,8 +15,8 @@ use GravityMedia\Magickly\Imagick\Magickly;
  *
  * @package GravityMedia\MagicklyTest\Imagick
  *
- * @covers GravityMedia\Magickly\Imagick\Magickly
- * @uses   GravityMedia\Magickly\Imagick\Image
+ * @covers \GravityMedia\Magickly\Imagick\Magickly
+ * @uses   \GravityMedia\Magickly\Imagick\Image
  */
 class MagicklyTest extends \PHPUnit_Framework_TestCase
 {

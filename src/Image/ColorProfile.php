@@ -8,6 +8,8 @@
 namespace GravityMedia\Magickly\Image;
 
 use GravityMedia\Magickly\Exception\RuntimeException;
+use GuzzleHttp\Stream\StreamInterface;
+use GuzzleHttp\Stream\Utils as StreamUtils;
 
 /**
  * Color profile class.
@@ -17,18 +19,28 @@ use GravityMedia\Magickly\Exception\RuntimeException;
 class ColorProfile
 {
     /**
-     * @var string
+     * @var StreamInterface
      */
-    protected $data;
+    private $stream;
 
     /**
      * Create color profile object.
      *
-     * @param string $data
+     * @param StreamInterface $stream
      */
-    public function __construct($data)
+    public function __construct(StreamInterface $stream)
     {
-        $this->data = $data;
+        $this->stream = $stream;
+    }
+
+    /**
+     * Get stream.
+     *
+     * @return StreamInterface
+     */
+    public function getStream()
+    {
+        return $this->stream;
     }
 
     /**
@@ -38,22 +50,28 @@ class ColorProfile
      */
     public function getData()
     {
-        return $this->data;
+        $offset = $this->stream->tell();
+        $this->stream->seek(0);
+
+        $data = $this->stream->getContents();
+        $this->stream->seek($offset);
+
+        return $data;
     }
 
     /**
-     * Create color profile object from path.
+     * Create color profile object from filename.
      *
-     * @param string $path
+     * @param string $filename
      *
      * @return $this
      */
-    public static function fromPath($path)
+    public static function fromFilename($filename)
     {
-        if (!file_exists($path) || !is_file($path) || !is_readable($path)) {
-            throw new RuntimeException(sprintf('Path %s is an invalid profile file or is not readable', $path));
+        if (!file_exists($filename) || !is_file($filename) || !is_readable($filename)) {
+            throw new RuntimeException(sprintf('Filename %s is an invalid profile file or is not readable', $filename));
         }
 
-        return new static(file_get_contents($path));
+        return new static(StreamUtils::open($filename, 'r'));
     }
 }

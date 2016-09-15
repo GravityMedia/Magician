@@ -15,7 +15,7 @@ use GravityMedia\Magickly\Imagick\Image;
  *
  * @package GravityMedia\MagicklyTest\Imagick
  *
- * @covers  GravityMedia\Magickly\Imagick\Image
+ * @covers  \GravityMedia\Magickly\Imagick\Image
  */
 class ImageTest extends \PHPUnit_Framework_TestCase
 {
@@ -38,7 +38,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
             [__DIR__ . '/../../resources/PHP-logo_Grayscale_Dot_Gain_15.tif', ColorSpace::COLOR_SPACE_GRAYSCALE],
             [__DIR__ . '/../../resources/PHP-logo_Grayscale_no_profile.jpg', ColorSpace::COLOR_SPACE_GRAYSCALE],
             [__DIR__ . '/../../resources/PHP-logo_Grayscale_no_profile.png', ColorSpace::COLOR_SPACE_GRAYSCALE],
-            [__DIR__ . '/../../resources/PHP-logo_Grayscale_no_profile.tif', ColorSpace::COLOR_SPACE_GRAYSCALE]
+            [__DIR__ . '/../../resources/PHP-logo_Grayscale_no_profile.tif', ColorSpace::COLOR_SPACE_GRAYSCALE],
         ];
     }
 
@@ -46,13 +46,25 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      * @dataProvider provideImages
      *
      * @param string $path
-     * @param int    $colorspace
+     * @param int    $colorSpace
      */
-    public function testGetColorSpace($path, $colorspace)
+    public function testGetColorSpace($path, $colorSpace)
     {
         $imagick = new \Imagick($path);
         $image = new Image($imagick);
 
-        $this->assertSame($colorspace, $image->getColorSpace());
+        $this->assertSame($colorSpace, $image->getColorSpace());
+    }
+
+    public function testWithColorSpace()
+    {
+        $imagick = new \Imagick(__DIR__ . '/../../resources/PHP-logo_RGB_no_profile.jpg');
+        $image = new Image($imagick);
+
+        $this->assertSame(
+            ColorSpace::COLOR_SPACE_CMYK,
+            $image->withColorSpace(ColorSpace::COLOR_SPACE_CMYK)->getColorSpace()
+        );
+        $this->assertSame(ColorSpace::COLOR_SPACE_RGB, $image->getColorSpace());
     }
 }

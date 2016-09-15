@@ -20,7 +20,19 @@ class Grayscale implements PaletteInterface
     /**
      * @var null|ColorProfile
      */
-    protected $colorProfile;
+    private $colorProfile;
+
+    /**
+     * Clone palette object.
+     */
+    public function __clone()
+    {
+        if (null === $this->colorProfile) {
+            return;
+        }
+
+        $this->colorProfile = clone $this->colorProfile;
+    }
 
     /**
      * {@inheritdoc}
@@ -36,7 +48,7 @@ class Grayscale implements PaletteInterface
     public function getColorProfile()
     {
         if (null === $this->colorProfile) {
-            $this->colorProfile = ColorProfile::fromPath(__DIR__ . '/../../../resources/Dot_Gain_15.icc');
+            $this->colorProfile = ColorProfile::fromFilename(__DIR__ . '/../../../resources/Dot_Gain_15.icc');
         }
 
         return $this->colorProfile;
@@ -45,9 +57,11 @@ class Grayscale implements PaletteInterface
     /**
      * {@inheritdoc}
      */
-    public function setColorProfile(ColorProfile $iccProfile)
+    public function withColorProfile(ColorProfile $colorProfile)
     {
-        $this->colorProfile = $iccProfile;
-        return $this;
+        $palette = clone $this;
+        $palette->colorProfile = $colorProfile;
+
+        return $palette;
     }
 }

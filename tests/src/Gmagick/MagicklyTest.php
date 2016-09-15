@@ -15,8 +15,8 @@ use GravityMedia\Magickly\Image\ImageInterface;
  *
  * @package GravityMedia\MagicklyTest\Gmagick
  *
- * @covers GravityMedia\Magickly\Gmagick\Magickly
- * @uses   GravityMedia\Magickly\Gmagick\Image
+ * @covers \GravityMedia\Magickly\Gmagick\Magickly
+ * @uses   \GravityMedia\Magickly\Gmagick\Image
  */
 class MagicklyTest extends \PHPUnit_Framework_TestCase
 {
