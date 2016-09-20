@@ -72,6 +72,6 @@ class ColorProfile
             throw new RuntimeException(sprintf('Filename %s is an invalid profile file or is not readable', $filename));
         }
 
-        return new static(StreamUtils::open($filename, 'r'));
+        return new static(StreamUtils::create(StreamUtils::open($filename, 'r')));
     }
 }

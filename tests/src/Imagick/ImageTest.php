@@ -8,6 +8,7 @@
 namespace GravityMedia\MagicklyTest\Imagick;
 
 use GravityMedia\Magickly\Enum\ColorSpace;
+use GravityMedia\Magickly\Enum\Type;
 use GravityMedia\Magickly\Imagick\Image;
 
 /**
@@ -25,20 +26,20 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     public function provideImages()
     {
         return [
-            [__DIR__ . '/../../resources/PHP-logo_RGB_no_profile.jpg', ColorSpace::COLOR_SPACE_RGB],
-            [__DIR__ . '/../../resources/PHP-logo_RGB_no_profile.png', ColorSpace::COLOR_SPACE_RGB],
-            [__DIR__ . '/../../resources/PHP-logo_RGB_no_profile.tif', ColorSpace::COLOR_SPACE_RGB],
-            [__DIR__ . '/../../resources/PHP-logo_RGB_sRGB_IEC61966-2-1.jpg', ColorSpace::COLOR_SPACE_RGB],
-            [__DIR__ . '/../../resources/PHP-logo_RGB_sRGB_IEC61966-2-1.tif', ColorSpace::COLOR_SPACE_RGB],
-            [__DIR__ . '/../../resources/PHP-logo_CMYK_no_profile.jpg', ColorSpace::COLOR_SPACE_CMYK],
-            [__DIR__ . '/../../resources/PHP-logo_CMYK_no_profile.tif', ColorSpace::COLOR_SPACE_CMYK],
-            [__DIR__ . '/../../resources/PHP-logo_CMYK_USWebUncoated.jpg', ColorSpace::COLOR_SPACE_CMYK],
-            [__DIR__ . '/../../resources/PHP-logo_CMYK_USWebUncoated.tif', ColorSpace::COLOR_SPACE_CMYK],
-            [__DIR__ . '/../../resources/PHP-logo_Grayscale_Dot_Gain_15.jpg', ColorSpace::COLOR_SPACE_GRAYSCALE],
-            [__DIR__ . '/../../resources/PHP-logo_Grayscale_Dot_Gain_15.tif', ColorSpace::COLOR_SPACE_GRAYSCALE],
-            [__DIR__ . '/../../resources/PHP-logo_Grayscale_no_profile.jpg', ColorSpace::COLOR_SPACE_GRAYSCALE],
-            [__DIR__ . '/../../resources/PHP-logo_Grayscale_no_profile.png', ColorSpace::COLOR_SPACE_GRAYSCALE],
-            [__DIR__ . '/../../resources/PHP-logo_Grayscale_no_profile.tif', ColorSpace::COLOR_SPACE_GRAYSCALE],
+            [__DIR__ . '/../../resources/PHP-logo_RGB_no_profile.jpg', Type::TYPE_TRUECOLOR, ColorSpace::COLOR_SPACE_RGB],
+            [__DIR__ . '/../../resources/PHP-logo_RGB_no_profile.png', Type::TYPE_TRUECOLOR, ColorSpace::COLOR_SPACE_RGB],
+            [__DIR__ . '/../../resources/PHP-logo_RGB_no_profile.tif', Type::TYPE_TRUECOLOR, ColorSpace::COLOR_SPACE_RGB],
+            [__DIR__ . '/../../resources/PHP-logo_RGB_sRGB_IEC61966-2-1.jpg', Type::TYPE_TRUECOLOR, ColorSpace::COLOR_SPACE_RGB],
+            [__DIR__ . '/../../resources/PHP-logo_RGB_sRGB_IEC61966-2-1.tif', Type::TYPE_TRUECOLOR, ColorSpace::COLOR_SPACE_RGB],
+            [__DIR__ . '/../../resources/PHP-logo_CMYK_no_profile.jpg', Type::TYPE_COLORSEPARATION, ColorSpace::COLOR_SPACE_CMYK],
+            [__DIR__ . '/../../resources/PHP-logo_CMYK_no_profile.tif', Type::TYPE_COLORSEPARATION, ColorSpace::COLOR_SPACE_CMYK],
+            [__DIR__ . '/../../resources/PHP-logo_CMYK_USWebUncoated.jpg', Type::TYPE_COLORSEPARATION, ColorSpace::COLOR_SPACE_CMYK],
+            [__DIR__ . '/../../resources/PHP-logo_CMYK_USWebUncoated.tif', Type::TYPE_COLORSEPARATION, ColorSpace::COLOR_SPACE_CMYK],
+            [__DIR__ . '/../../resources/PHP-logo_Grayscale_Dot_Gain_15.jpg', Type::TYPE_PALETTE, ColorSpace::COLOR_SPACE_GRAYSCALE],
+            [__DIR__ . '/../../resources/PHP-logo_Grayscale_Dot_Gain_15.tif', Type::TYPE_GRAYSCALE, ColorSpace::COLOR_SPACE_GRAYSCALE],
+            [__DIR__ . '/../../resources/PHP-logo_Grayscale_no_profile.jpg', Type::TYPE_PALETTE, ColorSpace::COLOR_SPACE_GRAYSCALE],
+            [__DIR__ . '/../../resources/PHP-logo_Grayscale_no_profile.png', Type::TYPE_GRAYSCALE, ColorSpace::COLOR_SPACE_GRAYSCALE],
+            [__DIR__ . '/../../resources/PHP-logo_Grayscale_no_profile.tif', Type::TYPE_GRAYSCALE, ColorSpace::COLOR_SPACE_GRAYSCALE],
         ];
     }
 
@@ -46,13 +47,15 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      * @dataProvider provideImages
      *
      * @param string $path
+     * @param int    $type
      * @param int    $colorSpace
      */
-    public function testGetColorSpace($path, $colorSpace)
+    public function testGetTypeAndColorSpace($path, $type, $colorSpace)
     {
         $imagick = new \Imagick($path);
         $image = new Image($imagick);
 
+        $this->assertSame($type, $image->getType());
         $this->assertSame($colorSpace, $image->getColorSpace());
     }
 

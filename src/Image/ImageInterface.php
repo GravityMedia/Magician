@@ -18,6 +18,26 @@ use GravityMedia\Magickly\Image\Palette\PaletteInterface;
 interface ImageInterface
 {
     /**
+     * Get type.
+     *
+     * @throws RuntimeException
+     *
+     * @return int
+     */
+    public function getType();
+
+    /**
+     * Return image with type.
+     *
+     * @param int $type
+     *
+     * @throws RuntimeException
+     *
+     * @return ImageInterface
+     */
+    public function withType($type);
+
+    /**
      * Get color space.
      *
      * @throws RuntimeException

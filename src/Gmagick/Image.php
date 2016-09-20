@@ -8,6 +8,7 @@
 namespace GravityMedia\Magickly\Gmagick;
 
 use GravityMedia\Magickly\Enum\ColorSpace;
+use GravityMedia\Magickly\Enum\Type;
 use GravityMedia\Magickly\Exception\RuntimeException;
 use GravityMedia\Magickly\Image\AbstractImage;
 use GravityMedia\Magickly\Image\ColorProfile;
@@ -28,10 +29,21 @@ class Image extends AbstractImage
     /**
      * @var array
      */
+    protected static $typeMapping = [
+        Type::TYPE_BILEVEL => \Gmagick::IMGTYPE_BILEVEL,
+        Type::TYPE_GRAYSCALE => \Gmagick::IMGTYPE_GRAYSCALE,
+        Type::TYPE_PALETTE => \Gmagick::IMGTYPE_PALETTE,
+        Type::TYPE_TRUECOLOR => \Gmagick::IMGTYPE_TRUECOLOR,
+        Type::TYPE_COLORSEPARATION => \Gmagick::IMGTYPE_COLORSEPARATION,
+    ];
+
+    /**
+     * @var array
+     */
     protected static $colorSpaceMapping = [
         ColorSpace::COLOR_SPACE_RGB => \Gmagick::COLORSPACE_RGB,
         ColorSpace::COLOR_SPACE_CMYK => \Gmagick::COLORSPACE_CMYK,
-        ColorSpace::COLOR_SPACE_GRAYSCALE => \Gmagick::COLORSPACE_GRAY
+        ColorSpace::COLOR_SPACE_GRAYSCALE => \Gmagick::COLORSPACE_GRAY,
     ];
 
     /**
@@ -55,10 +67,48 @@ class Image extends AbstractImage
     /**
      * {@inheritdoc}
      */
+    public function getType()
+    {
+        switch ($this->gmagick->getimagetype()) {
+            case \Gmagick::IMGTYPE_BILEVEL:
+                return Type::TYPE_BILEVEL;
+            case \Gmagick::IMGTYPE_GRAYSCALE:
+            case \Gmagick::IMGTYPE_GRAYSCALEMATTE:
+                return Type::TYPE_GRAYSCALE;
+            case \Gmagick::IMGTYPE_PALETTE:
+            case \Gmagick::IMGTYPE_PALETTEMATTE:
+                return Type::TYPE_PALETTE;
+            case \Gmagick::IMGTYPE_TRUECOLOR:
+            case \Gmagick::IMGTYPE_TRUECOLORMATTE:
+                return Type::TYPE_TRUECOLOR;
+            case \Gmagick::IMGTYPE_COLORSEPARATION:
+            case \Gmagick::IMGTYPE_COLORSEPARATIONMATTE:
+                return Type::TYPE_COLORSEPARATION;
+            default:
+                throw new RuntimeException('Unsupported image type');
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withType($type)
+    {
+        if (!isset(static::$typeMapping[$type])) {
+            throw new RuntimeException('Unsupported image type');
+        }
+
+        $image = clone $this;
+        $image->gmagick->setimagetype(static::$typeMapping[$type]);
+
+        return $image;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getColorSpace()
     {
-        $this->gmagick->getimagetype(); \Gmagick::IMGTYPE_GRAYSCALE;
-
         switch ($this->gmagick->getimagecolorspace()) {
             case \Gmagick::COLORSPACE_RGB:
             case \Gmagick::COLORSPACE_SRGB:

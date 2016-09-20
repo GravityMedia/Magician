@@ -8,26 +8,36 @@
 namespace GravityMedia\Magickly\Enum;
 
 /**
- * The color space enum.
+ * The type enum.
  *
  * @package GravityMedia\Magickly\Enum
  */
-class ColorSpace
+class Type
 {
     /**
-     * RGB color space.
+     * Bilevel type.
      */
-    const COLOR_SPACE_RGB = 1;
+    const TYPE_BILEVEL = 1;
 
     /**
-     * CMYK color space.
+     * Grayscale type.
      */
-    const COLOR_SPACE_CMYK = 2;
+    const TYPE_GRAYSCALE = 2;
 
     /**
-     * Grayscale color space.
+     * Palette type.
      */
-    const COLOR_SPACE_GRAYSCALE = 3;
+    const TYPE_PALETTE = 3;
+
+    /**
+     * Truecolor type.
+     */
+    const TYPE_TRUECOLOR = 4;
+
+    /**
+     * Colorseparation type.
+     */
+    const TYPE_COLORSEPARATION = 5;
 
     /**
      * Valid values
@@ -35,9 +45,11 @@ class ColorSpace
      * @var int[]
      */
     protected static $values = [
-        self::COLOR_SPACE_RGB,
-        self::COLOR_SPACE_CMYK,
-        self::COLOR_SPACE_GRAYSCALE,
+        self::TYPE_BILEVEL,
+        self::TYPE_GRAYSCALE,
+        self::TYPE_PALETTE,
+        self::TYPE_TRUECOLOR,
+        self::TYPE_COLORSEPARATION,
     ];
 
     /**
