@@ -26,7 +26,7 @@ interface PaletteInterface
     /**
      * Get color profile.
      *
-     * @return null|ColorProfile
+     * @return ColorProfile
      */
     public function getColorProfile();
 

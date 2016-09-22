@@ -46,13 +46,18 @@ class ColorProfile
     /**
      * Get data.
      *
+     * @throws RuntimeException
+     *
      * @return string
      */
     public function getData()
     {
         $offset = $this->stream->tell();
-        $this->stream->seek(0);
+        if (!is_int($offset)) {
+            throw new RuntimeException('Unable to get profile data');
+        }
 
+        $this->stream->seek(0);
         $data = $this->stream->getContents();
         $this->stream->seek($offset);
 
@@ -63,6 +68,8 @@ class ColorProfile
      * Create color profile object from filename.
      *
      * @param string $filename
+     *
+     * @throws RuntimeException
      *
      * @return $this
      */
