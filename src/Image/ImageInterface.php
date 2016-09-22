@@ -18,6 +18,26 @@ use GravityMedia\Magickly\Image\Palette\PaletteInterface;
 interface ImageInterface
 {
     /**
+     * Get format.
+     *
+     * @throws RuntimeException
+     *
+     * @return int
+     */
+    public function getFormat();
+
+    /**
+     * Return image with format.
+     *
+     * @param int $format
+     *
+     * @throws RuntimeException
+     *
+     * @return ImageInterface
+     */
+    public function withFormat($format);
+
+    /**
      * Get type.
      *
      * @throws RuntimeException

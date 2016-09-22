@@ -12,6 +12,7 @@ use GravityMedia\Magickly\Enum\Type;
 use GravityMedia\Magickly\Exception\RuntimeException;
 use GravityMedia\Magickly\Image\AbstractImage;
 use GravityMedia\Magickly\Image\ColorProfile;
+use GravityMedia\Magickly\Image\ImageInterface;
 use GuzzleHttp\Stream\Utils as StreamUtils;
 
 /**
@@ -67,6 +68,34 @@ class Image extends AbstractImage
     /**
      * {@inheritdoc}
      */
+    public function getFormat()
+    {
+        $format = $this->gmagick->getimageformat();
+        if (!in_array($format, static::$supportedFormats)) {
+            throw new RuntimeException('Unsupported image format');
+        }
+
+        return $format;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withFormat($format)
+    {
+        if (!in_array($format, static::$supportedFormats)) {
+            throw new RuntimeException('Unsupported image format');
+        }
+
+        $image = clone $this;
+        $image->gmagick->setimageformat($format);
+
+        return $image;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getType()
     {
         switch ($this->gmagick->getimagetype()) {
@@ -112,6 +141,9 @@ class Image extends AbstractImage
         switch ($this->gmagick->getimagecolorspace()) {
             case \Gmagick::COLORSPACE_RGB:
             case \Gmagick::COLORSPACE_SRGB:
+                if (Type::TYPE_GRAYSCALE === $this->getType()) {
+                    return ColorSpace::COLOR_SPACE_GRAYSCALE;
+                }
                 return ColorSpace::COLOR_SPACE_RGB;
             case \Gmagick::COLORSPACE_CMYK:
                 return ColorSpace::COLOR_SPACE_CMYK;

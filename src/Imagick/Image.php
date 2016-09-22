@@ -34,8 +34,8 @@ class Image extends AbstractImage
         Type::TYPE_BILEVEL => \Imagick::IMGTYPE_BILEVEL,
         Type::TYPE_GRAYSCALE => \Imagick::IMGTYPE_GRAYSCALE,
         Type::TYPE_PALETTE => \Imagick::IMGTYPE_PALETTE,
-        Type::TYPE_TRUECOLOR =>  \Imagick::IMGTYPE_TRUECOLOR,
-        Type::TYPE_COLORSEPARATION =>  \Imagick::IMGTYPE_COLORSEPARATION,
+        Type::TYPE_TRUECOLOR => \Imagick::IMGTYPE_TRUECOLOR,
+        Type::TYPE_COLORSEPARATION => \Imagick::IMGTYPE_COLORSEPARATION,
     ];
 
     /**
@@ -68,6 +68,34 @@ class Image extends AbstractImage
     /**
      * {@inheritdoc}
      */
+    public function getFormat()
+    {
+        $format = $this->imagick->getImageFormat();
+        if (!in_array($format, static::$supportedFormats)) {
+            throw new RuntimeException('Unsupported image format');
+        }
+
+        return $format;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withFormat($format)
+    {
+        if (!in_array($format, static::$supportedFormats)) {
+            throw new RuntimeException('Unsupported image format');
+        }
+
+        $image = clone $this;
+        $image->imagick->setImageFormat($format);
+
+        return $image;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getType()
     {
         switch ($this->imagick->getImageType()) {
@@ -78,6 +106,9 @@ class Image extends AbstractImage
                 return Type::TYPE_GRAYSCALE;
             case \Imagick::IMGTYPE_PALETTE:
             case \Imagick::IMGTYPE_PALETTEMATTE:
+                if ('JPEG' === $this->getFormat() && ColorSpace::COLOR_SPACE_GRAYSCALE === $this->getColorSpace()) {
+                    return Type::TYPE_GRAYSCALE;
+                }
                 return Type::TYPE_PALETTE;
             case \Imagick::IMGTYPE_TRUECOLOR:
             case \Imagick::IMGTYPE_TRUECOLORMATTE:

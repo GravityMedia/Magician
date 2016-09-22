@@ -5,7 +5,7 @@ php:
     - "7.0"
 
 env:
-    - "IMAGEMAGICK_VERSION=6.9.5-9 GRAPHICSMAGICK_VERSION=1.3.23"
+    - "IMAGEMAGICK_VERSION=6.9.5-10 GRAPHICSMAGICK_VERSION=1.3.25"
 
 before_install:
     - "sudo apt-get update -qq"
@@ -15,11 +15,11 @@ before_install:
 install:
     - "sudo apt-get purge -y imagemagick libmagickcore-dev libmagickwand-dev && sudo apt-get build-dep -y imagemagick graphicsmagick"
     - "cd $TRAVIS_BUILD_DIR"
-    - "wget http://www.imagemagick.org/download/ImageMagick-$IMAGEMAGICK_VERSION.tar.gz && tar -xzf ImageMagick-$IMAGEMAGICK_VERSION.tar.gz && cd ImageMagick-$IMAGEMAGICK_VERSION"
+    - "wget http://www.imagemagick.org/download/releases/ImageMagick-$IMAGEMAGICK_VERSION.tar.gz && tar -xzf ImageMagick-$IMAGEMAGICK_VERSION.tar.gz && cd ImageMagick-$IMAGEMAGICK_VERSION"
     - "./configure --prefix=/opt/imagemagick --enable-shared && make -j && sudo make install"
     - "printf \"/opt/imagemagick\\n\" | pecl install imagick-3.4.1"
     - "cd $TRAVIS_BUILD_DIR"
-    - "wget http://78.108.103.11/MIRROR/ftp/GraphicsMagick/1.3/GraphicsMagick-$GRAPHICSMAGICK_VERSION.tar.gz && tar -xzf GraphicsMagick-$GRAPHICSMAGICK_VERSION.tar.gz && cd GraphicsMagick-$GRAPHICSMAGICK_VERSION"
+    - "wget http://ftp.icm.edu.pl/pub/unix/graphics/GraphicsMagick/1.3/GraphicsMagick-$GRAPHICSMAGICK_VERSION.tar.gz && tar -xzf GraphicsMagick-$GRAPHICSMAGICK_VERSION.tar.gz && cd GraphicsMagick-$GRAPHICSMAGICK_VERSION"
     - "./configure --prefix=/opt/graphicsmagick --enable-shared && make -j && sudo make install"
     - "printf \"/opt/graphicsmagick\\n\" | if [[ $TRAVIS_PHP_VERSION == '7.0' ]]; then pecl install gmagick-2.0.2RC2; else pecl install gmagick-1.1.7RC3; fi"
     - "cd $TRAVIS_BUILD_DIR"

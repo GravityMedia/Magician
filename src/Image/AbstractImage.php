@@ -18,6 +18,16 @@ use GravityMedia\Magickly\Image\Palette\PaletteInterface;
 abstract class AbstractImage implements ImageInterface
 {
     /**
+     * @var array
+     */
+    protected static $supportedFormats = [
+        'GIF',
+        'JPEG',
+        'PNG',
+        'TIFF',
+    ];
+
+    /**
      * {@inheritdoc}
      */
     public function getPalette()
