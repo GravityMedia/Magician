@@ -12,7 +12,6 @@ use GravityMedia\Magickly\Enum\Type;
 use GravityMedia\Magickly\Exception\RuntimeException;
 use GravityMedia\Magickly\Image\AbstractImage;
 use GravityMedia\Magickly\Image\ColorProfile;
-use GravityMedia\Magickly\Image\ImageInterface;
 use GuzzleHttp\Stream\Utils as StreamUtils;
 
 /**
@@ -63,6 +62,14 @@ class Image extends AbstractImage
     public function __clone()
     {
         $this->gmagick = clone $this->gmagick;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getStream()
+    {
+        return StreamUtils::create($this->gmagick->getimagesblob());
     }
 
     /**

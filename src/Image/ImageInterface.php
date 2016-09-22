@@ -9,6 +9,7 @@ namespace GravityMedia\Magickly\Image;
 
 use GravityMedia\Magickly\Exception\RuntimeException;
 use GravityMedia\Magickly\Image\Palette\PaletteInterface;
+use GuzzleHttp\Stream\StreamInterface;
 
 /**
  * The image interface.
@@ -17,6 +18,13 @@ use GravityMedia\Magickly\Image\Palette\PaletteInterface;
  */
 interface ImageInterface
 {
+    /**
+     * Get image data as stream.
+     *
+     * @return StreamInterface
+     */
+    public function getStream();
+
     /**
      * Get format.
      *
