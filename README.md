@@ -32,36 +32,34 @@ $ php composer.phar require gravitymedia/magickly
 
 ## Usage
 
-This is a simple example using the Imagick implementation. 
+This simple example is showing how to convert an image to RGB color space.
 
 ```php
 // Initialize autoloader
 require_once __DIR__ . '/vendor/autoload.php';
 
 // Import classes
+//use GravityMedia\Magickly\Gmagick\Magickly;
 use GravityMedia\Magickly\Imagick\Magickly;
+use GravityMedia\Magickly\Image\Palette;
 
 // Create Magickly object
 $magickly = new Magickly();
 
-// Print version string
-print $magickly->getVersion();
-```
+// Open image
+$image = $magickly->open('/path/to/image/file.png');
 
-This is a simple example using the Gmagick implementation. 
+// Create RGB palette
+$palette = new Palette\RGB();
 
-```php
-// Initialize autoloader
-require_once __DIR__ . '/vendor/autoload.php';
+// Apply RGB palette to image
+$image = $image->withPalette($palette);
 
-// Import classes
-use GravityMedia\Magickly\Gmagick\Magickly;
+// Get image data as stream
+$stream = $image->getStream();
 
-// Create Magickly object
-$magickly = new Magickly();
-
-// Print version string
-print $magickly->getVersion();
+// Save image as a copy
+file_put_contents('/path/to/image/copy.png', $stream->getContents());
 ```
 
 ## Testing
